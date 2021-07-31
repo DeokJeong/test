@@ -1,0 +1,8 @@
+# virtualenv
+venv
+
+# env
+config.ini
+
+# db
+db.sqlite3
