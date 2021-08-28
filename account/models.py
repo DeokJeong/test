@@ -7,7 +7,7 @@ from django.dispatch import receiver
 # Create your models here.
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    username = models.CharField(max_length=32, null=True)
+    nickname = models.CharField(max_length=32, null=True)
 
     def __str__(self):
-        return self.username
+        return self.nickname

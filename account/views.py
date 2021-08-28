@@ -12,6 +12,7 @@ from .serializers import UserSerializer
 class RegisterView(APIView):
     def post(self, request):
         username = request.data.get("username", None)
+        nickname = request.data.get("nickname", None)
         password1 = request.data.get("password1", None)
         password2 = request.data.get("password2", None)
 
@@ -21,7 +22,7 @@ class RegisterView(APIView):
         if password1 != password2:
             return Response({"content": "password1 and password2 mismatch", "error": True}, status=status.HTTP_400_BAD_REQUEST)
         
-        u = User(username=username)
+        u = User(username=username, last_name=nickname)
         u.set_password(password1)
         u.save()
 
@@ -90,5 +91,8 @@ class UserView(APIView):
             return Response({"content": "Admin Required", "error": True}, status=status.HTTP_400_BAD_REQUEST)
 
 
+class UserInfo(APIView):
+    permission_classes = [permissions.IsAuthenticated,]
 
-
+    def get(self, request):
+        return Response({"content": request.user.last_name, "error": False}, status=status.HTTP_200_OK)
