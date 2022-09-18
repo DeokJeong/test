@@ -4,6 +4,8 @@ import configparser
 import django_heroku
 import os
 
+SECRET_KEY = "x%*n%oz#d40dd*p+h6-1uph8yhtmbo!wzmll5n5r-fy-6gp(bl"
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ROOT_DIR = os.path.dirname(BASE_DIR)
@@ -45,7 +47,7 @@ config = configparser.ConfigParser()
 config.read('config.ini')
 
 JWT_AUTH = {
-    'JWT_SECRET_KEY': config['DEFAULT']['SECRET_KEY'],
+    'JWT_SECRET_KEY': SECRET_KEY,
     'JWT_ALGORITHM': 'HS256',
     'JWT_ALLOW_REFRESH': True,
     'JWT_EXPIRATION_DELTA': timedelta(days=7),
