@@ -21,3 +21,7 @@ DATABASES = {
 
 CORS_ORIGIN_WHITELIST = ['http://127.0.0.1:3000' ,'http://localhost:3000']
 CORS_ALLOW_CREDENTIALS = True
+
+import dj_database_url
+db_from_env = dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(db_from_env)
